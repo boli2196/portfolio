@@ -1,7 +1,10 @@
 {
   "permissions": {
     "allow": [
-      "Bash(sips -g pixelWidth -g pixelHeight /Users/iseungjin/profile/src/app/profile.png)"
+      "Bash(sips -g pixelWidth -g pixelHeight /Users/iseungjin/profile/src/app/profile.png)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ]
   }
 }
