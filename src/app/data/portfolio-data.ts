@@ -1,3 +1,5 @@
+const base = import.meta.env.BASE_URL;
+
 export const portfolioData = {
   personal: {
     name: "이승진",
@@ -5,7 +7,7 @@ export const portfolioData = {
     email: "boli007@naver.com",
     phone: "010-3236-9368",
     linkedin: "https://www.linkedin.com/in/seung-jin-l-3a0ab9293/", // 여기에 실제 링크드인 URL 입력
-    profileImage: "/src/app/profile.png",
+    profileImage: `${base}profile.png`,
     introduction: "사용자 경험을 중심으로 생각하는 서비스 기획자입니다. 데이터 기반의 의사결정과 협업을 통해 비즈니스 성과를 만들어냅니다.",
     summary: [
       "10년 이상의 서비스 기획 경험",
@@ -18,7 +20,7 @@ export const portfolioData = {
   experience: [
     {
       id: "exp-1",
-      logo: "/coway.jpg",
+      logo: `${base}coway.jpg`,
       company: "(주)코웨이",
       position: "서비스 기획",
       period: "2023.09 - 재직중",
@@ -33,7 +35,7 @@ export const portfolioData = {
     },
     {
       id: "exp-2",
-      logo: "/connectwave.svg",
+      logo: `${base}connectwave.svg`,
       company: "(주)커넥트웨이브",
       position: "서비스 기획",
       period: "2022.03 - 2023.09",
@@ -64,7 +66,7 @@ export const portfolioData = {
     },
     {
       id: "exp-4",
-      logo: "/lotte.jpg",
+      logo: `${base}lotte.jpg`,
       company: "(주)롯데닷컴",
       position: "서비스 운영/기획",
       period: "2012.11 - 2014.11",
@@ -107,7 +109,7 @@ export const portfolioData = {
       ],
       impact: "미국 내 렌탈 비즈니스의 온라인 판매 채널을 본격적으로 확장하고, 백오피스 운영 효율과 매출 상승 기반을 확고히 다졌습니다.",
       skills: ["글로벌 이커머스 기획", "FO/BO 화면 설계", "기간계 연동 설계", "운영 정책 수립", "GTM/마케팅 연동"],
-      image: "/Project_Necoa.png"
+      image: `${base}Project_Necoa.png`
     },
     {
       id: "project-2",
@@ -135,7 +137,7 @@ export const portfolioData = {
       ],
       impact: "삼성전자 e-store 차세대 플랫폼 전환을 통해 다양한 고객군의 요구사항을 체계적으로 수용하고, 운영 효율 및 고객 경험을 동시에 개선하는 기반을 마련했습니다.",
       skills: ["이벤트 전시 기획", "B2B 서비스 기획", "인증 프로세스 설계", "FO 화면설계", "이해관계자 협업"],
-      image: "/Project_samsung.jpg"
+      image: `${base}Project_samsung.jpg`
     },
     {
       id: "project-3",
@@ -164,7 +166,7 @@ export const portfolioData = {
       impact: "차세대 면세점 플랫폼 리뉴얼을 성공적으로 완수하여 고객 쇼핑 여정의 핵심인 탐색 편의성을 획기적으로 개선하고, 안정적이고 효율적인 프로모션 백오피스 운영 환경을 조성했습니다.",
       skills: ["FO 서비스 기획", "BO 전시/콘텐츠 관리 설계", "검색엔진 고도화 기획", "화면 아키텍처 수립", "개발/사업부 협업"],
       teamSize: "기획 파트, 개발실, 디자인팀 및 마케팅/사업부 등 이해관계자 다수 협업",
-      image: "/Project_lotte.jpg"
+      image: `${base}Project_lotte.jpg`
     },
     {
       id: "project-4",
@@ -195,7 +197,7 @@ export const portfolioData = {
       ],
       impact: "BO 금권·쿠폰 관리 체계를 정비하여 운영 효율을 높이고, FO 마이페이지·내서재 리뉴얼을 통해 고객의 서비스 이용 경험을 개선하였습니다.",
       skills: ["BO 기획", "FO 서비스 기획", "정보 설계", "쿠폰/금권 정책 설계", "마이페이지 UX", "내서재 기능 기획"],
-      image: "/Project_kyobo.png"
+      image: `${base}Project_kyobo.png`
     }
   ],
 

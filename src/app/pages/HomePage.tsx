@@ -56,7 +56,7 @@ export function HomePage() {
           >
             <div className="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-md aspect-square">
               <ImageWithFallback
-                src="/IMG_7490_1.jpeg"
+                src={`${import.meta.env.BASE_URL}IMG_7490_1.jpeg`}
                 alt="프로필"
                 className="absolute inset-0 w-full h-full object-cover object-bottom"
               />
