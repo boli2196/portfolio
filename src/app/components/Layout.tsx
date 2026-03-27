@@ -1,6 +1,7 @@
 import { Outlet, Link, useLocation } from "react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { ScrollToTop } from "./ScrollToTop";
 
 export function Layout() {
   const location = useLocation();
@@ -90,6 +91,7 @@ export function Layout() {
 
       {/* Main Content */}
       <main>
+        <ScrollToTop />
         <Outlet />
       </main>
 

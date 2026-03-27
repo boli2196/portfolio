@@ -2,107 +2,108 @@ import { Link } from "react-router";
 import { ArrowRight, Briefcase, Code2, Lightbulb, TrendingUp, Mail, Linkedin, ShoppingBag, Smartphone, MessageSquare } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
-import { ScrollVideoCanvas } from "../components/ScrollVideoCanvas";
-import { useRef } from "react";
 
 export function HomePage() {
-  const heroRef = useRef<HTMLDivElement>(null);
+  const base = import.meta.env.BASE_URL;
 
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section - Full Background Scroll Animation */}
-      <div ref={heroRef} style={{ height: "300vh" }} className="relative">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          {/* Full-screen video background */}
-          <ScrollVideoCanvas containerRef={heroRef} variant="fullscreen" />
+      {/* Hero Section - Auto-playing background video */}
+      <div className="relative h-screen overflow-hidden">
+        {/* Background video */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src={`${base}Digital_Platform_UI_UX_Intro_Video.mp4`} type="video/mp4" />
+        </video>
 
-          {/* Dark gradient overlay for readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+        {/* Dark gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
 
-          {/* Content */}
-          <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center">
-            <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
-              {/* Left: text */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-              >
-                <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium mb-8 border border-white/20">
-                  AI와 함께 만드는 기획
-                </div>
-                <h1 className="text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                  {portfolioData.personal.name}
-                </h1>
-                <div className="flex flex-wrap gap-2 mb-10">
-                  {portfolioData.personal.title.split(" / ").map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-4 py-1.5 rounded-full text-sm font-semibold bg-white/15 backdrop-blur-sm text-white border border-white/25"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-lg text-white/80 mb-12 leading-relaxed max-w-lg">
-                  {portfolioData.personal.introduction}
-                </p>
-                <div className="flex gap-4">
-                  <Link
-                    to="/projects"
-                    className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg shadow-lg"
+        {/* Content */}
+        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center">
+          <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+            {/* Left: text */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium mb-8 border border-white/20">
+                AI와 함께 만드는 기획
+              </div>
+              <h1 className="text-6xl font-bold text-white mb-6 drop-shadow-lg">
+                {portfolioData.personal.name}
+              </h1>
+              <div className="flex flex-wrap gap-2 mb-10">
+                {portfolioData.personal.title.split(" / ").map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-4 py-1.5 rounded-full text-sm font-semibold bg-white/15 backdrop-blur-sm text-white border border-white/25"
                   >
-                    프로젝트 보기
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Link>
-                  <Link
-                    to="/contact"
-                    className="inline-flex items-center px-8 py-4 border border-white/40 text-white rounded-lg hover:bg-white/10 backdrop-blur-sm transition-colors font-semibold text-lg"
-                  >
-                    연락하기
-                  </Link>
-                </div>
-              </motion.div>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-lg text-white/80 mb-12 leading-relaxed max-w-lg">
+                {portfolioData.personal.introduction}
+              </p>
+              <div className="flex gap-4">
+                <Link
+                  to="/projects"
+                  className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg shadow-lg"
+                >
+                  프로젝트 보기
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Link>
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center px-8 py-4 border border-white/40 text-white rounded-lg hover:bg-white/10 backdrop-blur-sm transition-colors font-semibold text-lg"
+                >
+                  연락하기
+                </Link>
+              </div>
+            </motion.div>
 
-              {/* Right: profile photo */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7, delay: 0.2 }}
-                className="hidden lg:flex justify-end"
-              >
-                <div className="relative">
-                  {/* Outer glow ring */}
-                  <div className="absolute -inset-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/15" />
-                  {/* Profile image */}
-                  <div className="relative w-72 h-72 rounded-full overflow-hidden border-2 border-white/30 shadow-2xl">
-                    <img
-                      src={portfolioData.personal.profileImage}
-                      alt={portfolioData.personal.name}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  {/* Name badge */}
-                  <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-2 bg-white/15 backdrop-blur-md rounded-full border border-white/25 whitespace-nowrap">
-                    <span className="text-sm font-semibold text-white">{portfolioData.personal.name}</span>
-                  </div>
+            {/* Right: profile photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="hidden lg:flex justify-end"
+            >
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/15" />
+                <div className="relative w-72 h-72 rounded-full overflow-hidden border-2 border-white/30 shadow-2xl">
+                  <img
+                    src={portfolioData.personal.profileImage}
+                    alt={portfolioData.personal.name}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
-              </motion.div>
-            </div>
+                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-2 bg-white/15 backdrop-blur-md rounded-full border border-white/25 whitespace-nowrap">
+                  <span className="text-sm font-semibold text-white">{portfolioData.personal.name}</span>
+                </div>
+              </div>
+            </motion.div>
           </div>
-
-          {/* Scroll indicator */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2 }}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 z-20"
-          >
-            <span className="text-xs tracking-widest uppercase">Scroll</span>
-            <div className="w-px h-8 bg-gradient-to-b from-white/50 to-transparent animate-pulse" />
-          </motion.div>
         </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 z-20"
+        >
+          <span className="text-xs tracking-widest uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-white/50 to-transparent animate-pulse" />
+        </motion.div>
       </div>
 
       {/* Highlights Section */}
