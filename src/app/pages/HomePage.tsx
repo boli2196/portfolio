@@ -3,67 +3,79 @@ import { ArrowRight, Briefcase, Code2, Lightbulb, TrendingUp, Mail, Phone, Linke
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
+import { ScrollVideoCanvas } from "../components/ScrollVideoCanvas";
+import { useRef } from "react";
 
 export function HomePage() {
+  const heroRef = useRef<HTMLDivElement>(null);
+
   return (
     <div className="bg-white min-h-screen">
-      {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-12 pt-32 pb-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-block px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-8">
-              AI와 함께 만드는 기획
-            </div>
-            <h1 className="text-6xl font-bold text-gray-900 mb-6">
-              {portfolioData.personal.name}
-            </h1>
-            <div className="flex flex-wrap gap-2 mb-10">
-              {portfolioData.personal.title.split(" / ").map((tag) => (
-                <span key={tag} className="px-4 py-1.5 rounded-full text-sm font-semibold bg-blue-600 text-white">
-                  {tag}
-                </span>
-              ))}
-            </div>
-            <p className="text-lg text-gray-700 mb-12 leading-relaxed">
-              {portfolioData.personal.introduction}
-            </p>
-            <div className="flex gap-4">
-              <Link
-                to="/projects"
-                className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg"
+      {/* Hero Section - Scroll Animation */}
+      <div ref={heroRef} style={{ height: "300vh" }} className="relative">
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center">
+            <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
               >
-                프로젝트 보기
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 rounded-lg hover:border-gray-900 hover:text-gray-900 transition-colors font-medium text-lg"
-              >
-                연락하기
-              </Link>
-            </div>
-          </motion.div>
+                <div className="inline-block px-4 py-2 bg-blue-50 text-blue-600 rounded-full text-sm font-medium mb-8">
+                  AI와 함께 만드는 기획
+                </div>
+                <h1 className="text-6xl font-bold text-gray-900 mb-6">
+                  {portfolioData.personal.name}
+                </h1>
+                <div className="flex flex-wrap gap-2 mb-10">
+                  {portfolioData.personal.title.split(" / ").map((tag) => (
+                    <span key={tag} className="px-4 py-1.5 rounded-full text-sm font-semibold bg-blue-600 text-white">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-lg text-gray-700 mb-12 leading-relaxed">
+                  {portfolioData.personal.introduction}
+                </p>
+                <div className="flex gap-4">
+                  <Link
+                    to="/projects"
+                    className="inline-flex items-center px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-lg"
+                  >
+                    프로젝트 보기
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center px-8 py-4 border border-gray-300 text-gray-700 rounded-lg hover:border-gray-900 hover:text-gray-900 transition-colors font-medium text-lg"
+                  >
+                    연락하기
+                  </Link>
+                </div>
+              </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-end"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-md aspect-square">
-              <ImageWithFallback
-                src={`${import.meta.env.BASE_URL}IMG_7490_1.jpeg`}
-                alt="프로필"
-                className="absolute inset-0 w-full h-full object-cover object-bottom"
-              />
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+              >
+                <ScrollVideoCanvas containerRef={heroRef} />
+              </motion.div>
             </div>
+          </div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1 }}
+            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-400"
+          >
+            <span className="text-xs tracking-widest uppercase">Scroll</span>
+            <div className="w-px h-8 bg-gradient-to-b from-gray-400 to-transparent animate-pulse" />
           </motion.div>
         </div>
-      </section>
+      </div>
 
       {/* Highlights Section */}
       <section className="py-24 bg-gray-50">

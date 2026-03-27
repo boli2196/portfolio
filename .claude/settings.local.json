@@ -4,7 +4,10 @@
       "Bash(sips -g pixelWidth -g pixelHeight /Users/iseungjin/profile/src/app/profile.png)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(ffmpeg -encoders)",
+      "Bash(ffmpeg -i /Users/iseungjin/profile/public/Digital_Platform_UI_UX_Intro_Video.mp4 -vf \"fps=10,scale=1280:-1\" -q:v 3 /Users/iseungjin/profile/public/frames/frame_%03d.jpg)",
+      "Bash(node -e \"require\\(''sharp''\\)\")"
     ]
   }
 }
