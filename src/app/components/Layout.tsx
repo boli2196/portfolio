@@ -100,8 +100,11 @@ export function Layout() {
             <p className="text-gray-600 mb-4">
               © 2026 이승진. All rights reserved.
             </p>
-            <p className="text-gray-500 text-sm">
+            <p className="text-gray-500 text-sm mb-2">
               서비스 기획자 포트폴리오
+            </p>
+            <p className="text-gray-400 text-xs">
+              이 사이트는 AI와의 협업(바이브 코딩)으로 만들어졌습니다
             </p>
           </div>
         </div>
