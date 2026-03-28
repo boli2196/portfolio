@@ -88,7 +88,7 @@ export const portfolioData = {
       company: "(주)코웨이",
       image: `${base}Project_sg.jpg`,
       period: "2026.02 - 진행중",
-      role: "PM",
+      role: "PM / 서비스기획",
       overview: "코웨이 싱가포르 법인의 공식 온라인 쇼핑몰 전면 리뉴얼을 통해 현지 고객 경험 개선 및 온라인 판매 채널 경쟁력 강화",
       background: "싱가포르 법인 쇼핑몰은 일반 구매 기능만 제공되고 있어 코웨이 핵심 비즈니스 모델인 렌탈 서비스를 온라인으로 신청할 수 없었습니다. 렌탈 서비스 온라인화 및 전반적인 쇼핑몰 고도화를 통해 현지 온라인 채널 경쟁력 강화가 필요했습니다.",
       objectives: [
@@ -117,7 +117,7 @@ export const portfolioData = {
       company: "(주)코웨이",
       url: "www.necoa.com",
       period: "2023.09 - 2025.05",
-      role: "서비스 기획 담당",
+      role: "PM / 서비스기획",
       overview: "미국 신사업 커머스 플랫폼 구축 및 런칭을 위한 Front/Back Office 전반의 서비스 기획 총괄",
       background: "미국 정수기 렌탈 사업 확장을 위해 현지 시장 특성 및 고객 사용성에 최적화된 새로운 온라인 이커머스 플랫폼과 기간계 시스템이 필요했습니다.",
       objectives: [
@@ -140,7 +140,7 @@ export const portfolioData = {
       ],
       impact: "미국 내 렌탈 비즈니스의 온라인 판매 채널을 본격적으로 확장하고, 사업 확장에 대비한 기간계 시스템에 성공적인 구축 및 매출 상승 기반을 확고히 다졌습니다.",
       skills: ["글로벌 이커머스 기획", "FO/BO 화면 설계", "기간계 연동 설계", "운영 정책 수립", "GTM/마케팅 연동"],
-      image: `${base}Project_Necoa.png`
+      image: `${base}Project_Necoa.jpg`
     },
     {
       id: "project-2",
@@ -201,10 +201,10 @@ export const portfolioData = {
     },
     {
       id: "project-4",
-      title: "교보문고 리뉴얼 서비스 기획",
-      company: "교보문고",
+      title: "교보문고 이커머스 차세대 리뉴얼",
+      company: "(주)교보문고",
       period: "2021.09 - 2022.02",
-      role: "서비스 기획자",
+      role: "서비스 기획",
       overview: "교보문고 전면 리뉴얼 프로젝트에서 BO 금권/쿠폰 관리 및 FO 마이페이지/내서재 영역 서비스 기획 담당",
       background: "노후화된 시스템과 분산된 사용자 경험을 통합하고, 고객이 자주 사용하는 마이페이지·내서재 영역의 UX를 전면 개선하여 재방문율과 구매 전환율을 높이기 위한 리뉴얼이 필요했습니다.",
       objectives: [
@@ -282,21 +282,21 @@ export const portfolioData = {
       major: "AI 인공지능학과",
       degree: "석사",
       period: "2025.09 - 재학중",
-      description: "대규모 언어모델(LLM) 기본 원리와 에이전트 설계 개념 이해"
+      description: "서비스 기획자로서 AI 기술을 깊이 이해하고 실무에 접목하기 위해 진학. LLM 원리·에이전트 설계·프롬프트 엔지니어링 등을 학습하며 AI 기반 서비스 기획 역량을 고도화 중"
     },
     {
       school: "학점은행제",
       major: "경영학과",
       degree: "학사",
       period: "2020.03 - 2023.08",
-      description: "비즈니스 경영 전공"
+      description: "재직 중 학사 학위 취득. 경영전략·마케팅·조직관리 등 비즈니스 전반을 학습하며 현장 경험을 이론으로 체계화"
     },
     {
       school: "한국공학대학교",
       major: "게임공학과",
       degree: "학사",
       period: "2007.03 - 중퇴",
-      description: "2학년 1학기 중퇴"
+      description: "개인 사정으로 2학년 1학기 자퇴. 재학 중 습득한 컴퓨터공학 기초(알고리즘·자료구조·시스템 구조)는 이후 개발팀과의 협업에서 실질적인 소통 기반이 됨"
     }
   ],
 

@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
-import { ArrowRight, Calendar, Building2, Mail } from "lucide-react";
+import { ArrowRight, Calendar, Mail } from "lucide-react";
 
 export function ProjectsPage() {
   return (
@@ -54,7 +54,7 @@ export function ProjectsPage() {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-all"
+                          className="absolute inset-0 w-full h-full object-cover object-top opacity-40 group-hover:opacity-50 transition-all"
                         />
                         <div className="absolute inset-0 bg-[#0a0a0a]/50"></div>
                       </>
@@ -62,16 +62,17 @@ export function ProjectsPage() {
                       <div className="absolute inset-0 bg-white/5"></div>
                     )}
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-white p-6 text-center">
-                      <div className="text-xs text-white/50 mb-2 tracking-widest uppercase">
+                      {/* Index number */}
+                      <span className="absolute top-4 right-5 text-7xl font-black text-white/[0.07] leading-none select-none">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <div className="w-8 h-[2px] bg-blue-400 mb-3" />
+                      <div className="text-[10px] tracking-[0.4em] uppercase text-white/50 mb-2">
                         {project.role}
                       </div>
-                      <h2 className="text-2xl font-black text-white mb-3">
+                      <h2 className="text-3xl font-black text-white leading-tight">
                         {project.title}
                       </h2>
-                      <div className="flex items-center text-white/40 text-sm">
-                        <Building2 className="h-3 w-3 mr-2" />
-                        {project.company}
-                      </div>
                     </div>
                   </div>
 

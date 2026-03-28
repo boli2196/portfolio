@@ -102,9 +102,12 @@ export function AboutPage() {
               <h2 className="text-4xl font-black text-white mb-4">
                 {portfolioData.personal.name}
               </h2>
-              <p className="text-xl text-white/60 mb-6">
-                {portfolioData.personal.title}
-              </p>
+              <div className="flex items-center gap-3 mb-6">
+                <span className="w-6 h-[2px] bg-blue-400" />
+                <span className="text-sm font-semibold tracking-[0.25em] uppercase text-blue-400">
+                  {portfolioData.personal.title}
+                </span>
+              </div>
               <p className="text-white/50 leading-relaxed mb-8">
                 {portfolioData.personal.introduction}
               </p>

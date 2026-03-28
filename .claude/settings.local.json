@@ -9,7 +9,9 @@
       "Bash(ffmpeg -i /Users/iseungjin/profile/public/Digital_Platform_UI_UX_Intro_Video.mp4 -vf \"fps=10,scale=1280:-1\" -q:v 3 /Users/iseungjin/profile/public/frames/frame_%03d.jpg)",
       "Bash(node -e \"require\\(''sharp''\\)\")",
       "Bash(git push:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(exiftool /Users/iseungjin/profile/public/Project_Necoa.jpg)",
+      "Bash(identify /Users/iseungjin/profile/public/Project_Necoa.jpg)"
     ]
   }
 }

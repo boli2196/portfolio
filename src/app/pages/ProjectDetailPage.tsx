@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router";
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -14,27 +14,35 @@ import {
   Zap
 } from "lucide-react";
 
-const VIEWPORT_H = 560;
-
 function AutoScrollImage({ src, alt }: { src: string; alt: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
   const [scrollAmount, setScrollAmount] = useState(0);
   const [animKey, setAnimKey] = useState(0);
 
-  const handleLoad = () => {
-    if (imgRef.current) {
+  const measure = () => {
+    if (imgRef.current && containerRef.current) {
       const { naturalWidth, naturalHeight, offsetWidth } = imgRef.current;
       const renderedHeight = (naturalHeight / naturalWidth) * offsetWidth;
-      setScrollAmount(Math.max(0, renderedHeight - VIEWPORT_H));
+      const viewportH = containerRef.current.offsetHeight;
+      setScrollAmount(Math.max(0, renderedHeight - viewportH));
       setAnimKey((k) => k + 1);
     }
   };
 
-  // duration scales with scroll distance: ~1px per 8ms
-  const duration = Math.round((scrollAmount / 1000) * 8 + 4);
+  useEffect(() => {
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // 200px/sec
+  const duration = scrollAmount > 0 ? Math.round(scrollAmount / 200) : 0;
 
   return (
-    <div style={{ height: VIEWPORT_H, overflow: "hidden", position: "relative" }}>
+    <div
+      ref={containerRef}
+      style={{ aspectRatio: "16/9", overflow: "hidden", position: "relative" }}
+    >
       <style>{`
         @keyframes page-scroll-${animKey} {
           0%, 8%   { transform: translateY(0); }
@@ -53,7 +61,7 @@ function AutoScrollImage({ src, alt }: { src: string; alt: string }) {
           ref={imgRef}
           src={src}
           alt={alt}
-          onLoad={handleLoad}
+          onLoad={measure}
           style={{ width: "100%", display: "block" }}
         />
       </div>
