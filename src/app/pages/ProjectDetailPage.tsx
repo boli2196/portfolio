@@ -1,6 +1,7 @@
 import { useParams, Link } from "react-router";
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
+import { useRef, useState } from "react";
 import {
   ArrowLeft,
   Calendar,
@@ -12,6 +13,52 @@ import {
   CheckCircle2,
   Zap
 } from "lucide-react";
+
+const VIEWPORT_H = 560;
+
+function AutoScrollImage({ src, alt }: { src: string; alt: string }) {
+  const imgRef = useRef<HTMLImageElement>(null);
+  const [scrollAmount, setScrollAmount] = useState(0);
+  const [animKey, setAnimKey] = useState(0);
+
+  const handleLoad = () => {
+    if (imgRef.current) {
+      const amount = imgRef.current.offsetHeight - VIEWPORT_H;
+      setScrollAmount(Math.max(0, amount));
+      setAnimKey((k) => k + 1);
+    }
+  };
+
+  // duration scales with scroll distance: ~1px per 8ms
+  const duration = Math.round((scrollAmount / 1000) * 8 + 4);
+
+  return (
+    <div style={{ height: VIEWPORT_H, overflow: "hidden", position: "relative" }}>
+      <style>{`
+        @keyframes page-scroll-${animKey} {
+          0%, 8%   { transform: translateY(0); }
+          80%, 90% { transform: translateY(-${scrollAmount}px); }
+          100%     { transform: translateY(0); }
+        }
+      `}</style>
+      <div
+        style={{
+          animation: scrollAmount > 0
+            ? `page-scroll-${animKey} ${duration}s ease-in-out infinite`
+            : "none",
+        }}
+      >
+        <img
+          ref={imgRef}
+          src={src}
+          alt={alt}
+          onLoad={handleLoad}
+          style={{ width: "100%", display: "block" }}
+        />
+      </div>
+    </div>
+  );
+}
 
 export function ProjectDetailPage() {
   const { projectId } = useParams();
@@ -118,12 +165,8 @@ export function ProjectDetailPage() {
                     </div>
                   </div>
                 </div>
-                {/* Screenshot */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full object-cover object-top"
-                />
+                {/* Screenshot - auto scroll */}
+                <AutoScrollImage src={project.image} alt={project.title} />
               </div>
             </motion.div>
           </div>
