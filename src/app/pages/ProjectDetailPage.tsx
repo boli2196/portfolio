@@ -23,8 +23,9 @@ function AutoScrollImage({ src, alt }: { src: string; alt: string }) {
 
   const handleLoad = () => {
     if (imgRef.current) {
-      const amount = imgRef.current.offsetHeight - VIEWPORT_H;
-      setScrollAmount(Math.max(0, amount));
+      const { naturalWidth, naturalHeight, offsetWidth } = imgRef.current;
+      const renderedHeight = (naturalHeight / naturalWidth) * offsetWidth;
+      setScrollAmount(Math.max(0, renderedHeight - VIEWPORT_H));
       setAnimKey((k) => k + 1);
     }
   };
