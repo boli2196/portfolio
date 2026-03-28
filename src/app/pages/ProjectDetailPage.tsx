@@ -9,7 +9,6 @@ import {
   Target,
   Lightbulb,
   TrendingUp,
-  Users,
   CheckCircle2,
   Zap
 } from "lucide-react";
@@ -137,10 +136,6 @@ export function ProjectDetailPage() {
                 <div className="flex items-center gap-2 border border-white/15 px-3 py-2">
                   <Calendar className="h-4 w-4 text-white/50" />
                   <span className="text-white/50">{project.period}</span>
-                </div>
-                <div className="flex items-center gap-2 border border-white/15 px-3 py-2">
-                  <Users className="h-4 w-4 text-violet-400" />
-                  <span className="text-white/50">{project.teamSize}</span>
                 </div>
               </div>
             </div>

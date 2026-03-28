@@ -1,7 +1,53 @@
 import { Link } from "react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
+import { useState, useEffect, useRef } from "react";
+import { useCountUp } from "../hooks/useCountUp";
+
+// "13+" → { num: 13, suffix: "+" }, "13년+" → { num: 13, suffix: "년+" }, "4개사" → { num: 4, suffix: "개사" }
+function parseStatValue(value: string): { num: number; suffix: string } | null {
+  const match = value.match(/^(\d+)(.*)$/);
+  if (!match) return null;
+  return { num: parseInt(match[1], 10), suffix: match[2] };
+}
+
+function CountUpStat({ value, label, className = "" }: { value: string; label: string; className?: string }) {
+  const parsed = parseStatValue(value);
+  const { count, setRef } = useCountUp(parsed?.num ?? 0, 1.8);
+
+  if (!parsed) {
+    return (
+      <div ref={(el) => setRef(el)} className={className}>
+        <div className="text-4xl font-black text-white mb-2">{value}</div>
+        <div className="text-sm text-white/40">{label}</div>
+      </div>
+    );
+  }
+
+  return (
+    <div ref={(el) => setRef(el)} className={className}>
+      <div className="text-4xl font-black text-white mb-2">
+        {count}{parsed.suffix}
+      </div>
+      <div className="text-sm text-white/40">{label}</div>
+    </div>
+  );
+}
+
+function CountUpHeroStat({ n, label }: { n: string; label: string }) {
+  const parsed = parseStatValue(n);
+  const { count, setRef } = useCountUp(parsed?.num ?? 0, 1.5, true);
+
+  return (
+    <div ref={(el) => setRef(el)}>
+      <div className="text-4xl font-black text-white leading-none">
+        {parsed ? `${count}${parsed.suffix}` : n}
+      </div>
+      <div className="text-xs tracking-[0.3em] uppercase text-white/30 mt-2">{label}</div>
+    </div>
+  );
+}
 
 const marqueeKeywords = [
   "Service Design", "Product Strategy", "UX Planning", "Data-Driven", "AI Integration",
@@ -17,9 +63,52 @@ const marqueeKeywords2 = [
 
 export function HomePage() {
   const base = import.meta.env.BASE_URL;
+  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
+  const floatRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const onMove = (e: MouseEvent) => {
+      if (floatRef.current) {
+        floatRef.current.style.left = `${e.clientX + 24}px`;
+        floatRef.current.style.top = `${e.clientY - 80}px`;
+      }
+    };
+    window.addEventListener("mousemove", onMove);
+    return () => window.removeEventListener("mousemove", onMove);
+  }, []);
+
+  const activeProject = portfolioData.projects.find(p => p.id === hoveredProject);
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen text-white" style={{ overflowX: "clip" }}>
+      {/* 프로젝트 호버 플로팅 이미지 */}
+      <AnimatePresence>
+        {hoveredProject && activeProject?.image && (
+          <motion.div
+            ref={floatRef}
+            key={hoveredProject}
+            initial={{ opacity: 0, scale: 0.88, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.88, y: 12 }}
+            transition={{ duration: 0.22, ease: "easeOut" }}
+            className="fixed pointer-events-none z-[9990]"
+            style={{ width: 280 }}
+          >
+            <div className="rounded-lg overflow-hidden border border-white/20 shadow-[0_20px_60px_rgba(0,0,0,0.8)]">
+              <img
+                src={activeProject.image}
+                alt={activeProject.title}
+                className="w-full object-cover object-top"
+                style={{ height: 180 }}
+              />
+              <div className="bg-[#111] px-3 py-2 border-t border-white/10">
+                <p className="text-[10px] text-white/40 tracking-widest uppercase">{activeProject.company}</p>
+                <p className="text-xs text-white font-semibold truncate mt-0.5">{activeProject.title}</p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ── Hero ── */}
       <section className="relative min-h-screen bg-black grid lg:grid-cols-2">
@@ -82,10 +171,7 @@ export function HomePage() {
                 { n: "10+", label: "Projects" },
                 { n: "4", label: "Companies" },
               ].map((s) => (
-                <div key={s.label}>
-                  <div className="text-2xl font-black text-white leading-none">{s.n}</div>
-                  <div className="text-[10px] tracking-[0.3em] uppercase text-white/30 mt-1">{s.label}</div>
-                </div>
+                <CountUpHeroStat key={s.label} n={s.n} label={s.label} />
               ))}
             </div>
           </div>
@@ -202,8 +288,7 @@ export function HomePage() {
                   viewport={{ once: true }}
                   className="bg-[#0a0a0a] p-8"
                 >
-                  <div className="text-4xl font-black text-white mb-2">{stat.number}</div>
-                  <div className="text-sm text-white/40">{stat.label}</div>
+                  <CountUpStat value={stat.number} label={stat.label} />
                 </motion.div>
               ))}
             </div>
@@ -240,6 +325,8 @@ export function HomePage() {
                 <Link
                   to={`/projects/${project.id}`}
                   className="flex items-center gap-6 py-7 border-t border-white/10 hover:bg-white/[0.03] transition-colors group px-2 -mx-2"
+                  onMouseEnter={() => setHoveredProject(project.id)}
+                  onMouseLeave={() => setHoveredProject(null)}
                 >
                   <span className="text-xs text-white/20 font-mono w-8 flex-shrink-0">
                     {String(i + 1).padStart(2, "0")}
