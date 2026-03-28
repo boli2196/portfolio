@@ -1,56 +1,28 @@
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
-import { Briefcase, Calendar, MapPin, TrendingUp } from "lucide-react";
+import { Briefcase, Calendar } from "lucide-react";
 
 export function ExperiencePage() {
   return (
-    <div className="bg-white">
+    <div className="bg-[#0a0a0a]">
       {/* Header */}
-      <section className="relative bg-gray-900 py-20 overflow-hidden">
-        {/* 배경: 타임라인/성장 곡선 */}
-        <div className="absolute inset-0 opacity-10">
-          <svg className="w-full h-full" viewBox="0 0 1200 400" fill="none" stroke="white" strokeWidth="3">
-            <path d="M0,350 L200,300 L400,250 L600,180 L800,120 L1000,80 L1200,50" strokeDasharray="10 5"/>
-            <circle cx="200" cy="300" r="8" fill="white"/>
-            <circle cx="400" cy="250" r="8" fill="white"/>
-            <circle cx="600" cy="180" r="8" fill="white"/>
-            <circle cx="800" cy="120" r="8" fill="white"/>
-            <circle cx="1000" cy="80" r="8" fill="white"/>
-          </svg>
+      <section className="relative pt-6 pb-12 border-b border-white/10 overflow-hidden">
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none" aria-hidden="true">
+          <span className="text-[clamp(8rem,20vw,18rem)] font-black uppercase leading-none tracking-tighter text-white/[0.04] whitespace-nowrap">
+            EXPERIENCE
+          </span>
         </div>
-
-        {/* 계단 모양 장식 (경력 성장) */}
-        <div className="absolute left-10 top-1/2 transform -translate-y-1/2 opacity-10">
-          <div className="w-12 h-8 bg-white mb-1"></div>
-          <div className="w-16 h-8 bg-white mb-1 ml-2"></div>
-          <div className="w-20 h-8 bg-white mb-1 ml-4"></div>
-          <div className="w-24 h-8 bg-white ml-6"></div>
-        </div>
-
-        {/* 브리프케이스/서류 아이콘 */}
-        <svg className="absolute top-10 right-20 w-24 h-24 opacity-10" viewBox="0 0 24 24" fill="white">
-          <rect x="4" y="7" width="16" height="12" rx="2"/>
-          <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
-          <line x1="4" y1="13" x2="20" y2="13"/>
-        </svg>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 relative">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.7 }}
           >
-            <div className="inline-flex items-center gap-2 mb-6">
-              <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
-              <div className="text-sm font-bold tracking-widest text-blue-400">
-                CAREER PATH
-              </div>
-            </div>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
-              경력
+            <p className="text-[11px] tracking-[0.5em] uppercase text-white/30 mb-5">CAREER PATH</p>
+            <h1 className="text-6xl lg:text-7xl font-black text-white mb-3 leading-none tracking-tight">
+              Career
             </h1>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+            <p className="text-base text-white/40 leading-relaxed">
               다양한 경험을 통해 성장해왔습니다
             </p>
           </motion.div>
@@ -58,9 +30,9 @@ export function ExperiencePage() {
       </section>
 
       {/* Timeline */}
-      <section className="py-20">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-12">
+      <section className="py-20 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="space-y-8">
             {portfolioData.experience.map((exp, index) => (
               <motion.div
                 key={exp.id}
@@ -68,81 +40,75 @@ export function ExperiencePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="relative"
+                className="border border-white/10 bg-[#0a0a0a] overflow-hidden"
               >
-
-                <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-                  <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-6 md:p-8 border-b border-gray-100">
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-                      <div>
-                        <div className="flex items-center mb-3">
-                          <div className="w-16 h-16 bg-white rounded-xl shadow-md flex items-center justify-center mr-4 overflow-hidden shrink-0">
-                            {exp.logo ? (
-                              <img src={exp.logo} alt={`${exp.company} logo`} className="w-full h-full object-contain p-1" />
-                            ) : (
-                              <Briefcase className="h-8 w-8 text-blue-600" />
-                            )}
-                          </div>
-                          <div>
-                            <h2 className="text-3xl font-bold text-gray-900">
-                              {exp.company}
-                            </h2>
-                            <p className="text-xl text-gray-700 mt-1">
-                              {exp.position}
-                            </p>
-                          </div>
+                {/* Card Header */}
+                <div className="p-6 md:p-8 border-b border-white/10">
+                  <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <div className="flex items-center mb-4">
+                        <div className={`w-14 h-14 flex items-center justify-center mr-4 shrink-0 overflow-hidden rounded-lg p-0.5 ${exp.logo ? "bg-white" : "bg-white/10 border border-white/15"}`}>
+                          {exp.logo ? (
+                            <img src={exp.logo} alt={`${exp.company} logo`} className="w-full h-full object-contain" />
+                          ) : (
+                            <Briefcase className="h-6 w-6 text-blue-400" />
+                          )}
+                        </div>
+                        <div>
+                          <h2 className="text-2xl font-black text-white">
+                            {exp.company}
+                          </h2>
+                          <span className="inline-flex items-center mt-2 gap-1.5 text-sm font-medium text-blue-400">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>
+                            {exp.position}
+                          </span>
                         </div>
                       </div>
-                      <div className="flex items-center text-gray-600 mt-4 md:mt-0">
-                        <Calendar className="h-5 w-5 mr-2" />
-                        <span className="font-medium flex items-center">
-                          {exp.period.includes('재직중') ? (
-                            <>
-                              <span>{exp.period.split(' - ')[0]}</span>
-                              <span className="mx-2 text-gray-400">-</span>
-                              <span className="px-2.5 py-0.5 rounded-md text-xs font-bold bg-blue-100 text-blue-700 shadow-sm border border-blue-200">
-                                재직중
-                              </span>
-                            </>
-                          ) : (
-                            exp.period
-                          )}
-                        </span>
-                      </div>
                     </div>
-                    <p className="text-gray-700 mt-4 text-lg">
-                      {exp.description}
-                    </p>
+                    <div className="flex items-center gap-3 mt-2 md:mt-0">
+                      <Calendar className="h-4 w-4 text-white/40 flex-shrink-0" />
+                      <span className="text-base font-medium text-white/70 flex items-center gap-2">
+                        {exp.period.includes('재직중') ? (
+                          <>
+                            <span>{exp.period.split(' - ')[0]}</span>
+                            <span className="text-white/30">–</span>
+                            <span className="px-2.5 py-0.5 text-xs font-semibold bg-emerald-500/15 border border-emerald-400/30 text-emerald-300">
+                              재직중
+                            </span>
+                          </>
+                        ) : (
+                          exp.period
+                        )}
+                      </span>
+                    </div>
                   </div>
+                  <p className="text-white/50 leading-relaxed">
+                    {exp.description}
+                  </p>
+                </div>
 
-                  <div className="p-6 md:p-8">
-                    <h3 className="text-xl font-bold text-gray-900 mb-4 flex items-center">
-                      <TrendingUp className="h-6 w-6 text-green-600 mr-2" />
-                      주요 성과
-                    </h3>
-                    <ul className="space-y-3 mb-8">
-                      {exp.achievements.map((achievement, i) => (
-                        <li key={i} className="flex items-start">
-                          <span className="inline-block w-2 h-2 bg-blue-600 rounded-full mr-3 mt-2 flex-shrink-0"></span>
-                          <span className="text-gray-700">{achievement}</span>
-                        </li>
+                <div className="p-6 md:p-8">
+                  <p className="text-sm font-bold text-white mb-4">주요 성과</p>
+                  <ul className="space-y-3 mb-8">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="flex items-start">
+                        <span className="inline-block w-1 h-1 bg-white/40 rounded-full mr-3 mt-2 flex-shrink-0"></span>
+                        <span className="text-white/60">{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div>
+                    <p className="text-sm font-bold text-white mb-3">주요 역량</p>
+                    <div className="flex flex-wrap gap-2">
+                      {exp.skills.map((skill, i) => (
+                        <span
+                          key={i}
+                          className="text-xs px-3 py-1.5 border border-white/30 text-white/70 rounded-full bg-white/5"
+                        >
+                          {skill}
+                        </span>
                       ))}
-                    </ul>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-500 mb-3">
-                        주요 역량
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {exp.skills.map((skill, i) => (
-                          <span
-                            key={i}
-                            className="px-4 py-2 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -153,21 +119,22 @@ export function ExperiencePage() {
       </section>
 
       {/* Summary Stats */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="mb-12"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            <p className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-4">SUMMARY</p>
+            <h2 className="text-5xl lg:text-6xl font-black text-white">
               경력 요약
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-px bg-white/10 md:grid-cols-3">
             {[
               {
                 number: "13년+",
@@ -191,15 +158,15 @@ export function ExperiencePage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-2xl p-8 shadow-lg text-center"
+                className="bg-[#0a0a0a] p-8 text-center"
               >
-                <div className="text-5xl font-bold text-blue-600 mb-3">
+                <div className="text-5xl font-black text-white mb-3">
                   {stat.number}
                 </div>
-                <div className="text-xl font-semibold text-gray-900 mb-2">
+                <div className="text-base font-semibold text-white/60 mb-2">
                   {stat.label}
                 </div>
-                <p className="text-gray-600">{stat.description}</p>
+                <p className="text-white/40 text-sm">{stat.description}</p>
               </motion.div>
             ))}
           </div>

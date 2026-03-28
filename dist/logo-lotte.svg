@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 44" width="130" height="44">
+  <!-- Lotte red dot mark -->
+  <circle cx="14" cy="22" r="10" fill="#E31837"/>
+  <circle cx="14" cy="22" r="5" fill="#ffffff"/>
+  <!-- Text -->
+  <text x="30" y="28" font-family="Arial, sans-serif" font-size="20" font-weight="800" fill="#ffffff" letter-spacing="-0.5">LOTTE</text>
+</svg>

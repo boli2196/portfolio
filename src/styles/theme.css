@@ -119,6 +119,15 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

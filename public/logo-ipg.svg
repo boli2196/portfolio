@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 44" width="120" height="44">
+  <!-- IP mark -->
+  <rect x="2" y="8" width="28" height="28" rx="4" fill="none" stroke="#6366F1" stroke-width="2"/>
+  <text x="8" y="28" font-family="Arial, sans-serif" font-size="15" font-weight="800" fill="#6366F1">IP</text>
+  <!-- Text -->
+  <text x="36" y="20" font-family="Arial, sans-serif" font-size="10" font-weight="700" fill="#ffffff">아이피</text>
+  <text x="36" y="33" font-family="Arial, sans-serif" font-size="10" font-weight="600" fill="#ffffff/70">그룹</text>
+</svg>

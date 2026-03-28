@@ -1,328 +1,346 @@
 import { Link } from "react-router";
-import { ArrowRight, Briefcase, Code2, Lightbulb, TrendingUp, Mail, Linkedin, ShoppingBag, Smartphone, MessageSquare } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
+
+const marqueeKeywords = [
+  "Service Design", "Product Strategy", "UX Planning", "Data-Driven", "AI Integration",
+  "Shopify", "Roadmapping", "FO / BO Design", "Project Lead", "Stakeholder Mgmt",
+  "User Research", "Ecommerce", "API Planning", "Vibe Coding",
+];
+
+const marqueeKeywords2 = [
+  "Global Ecommerce", "Rental Platform", "B2B System", "Loyalty Program", "Payment Flow",
+  "Membership Design", "Next-Gen Platform", "US Market", "Singapore", "Cart & Order",
+  "Backend Planning", "MVP Scoping", "Go-to-Market",
+];
 
 export function HomePage() {
   const base = import.meta.env.BASE_URL;
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero Section - Auto-playing background video */}
-      <div className="relative h-screen overflow-hidden">
-        {/* Background video */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
+    <div className="bg-[#0a0a0a] min-h-screen text-white" style={{ overflowX: "clip" }}>
+
+      {/* ── Hero ── */}
+      <section className="relative min-h-screen bg-black grid lg:grid-cols-2">
+
+        {/* Left: Photo */}
+        <motion.div
+          className="relative overflow-hidden min-h-[55vw] lg:min-h-screen"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
         >
-          <source src={`${base}Digital_Platform_UI_UX_Intro_Video.mp4`} type="video/mp4" />
-        </video>
+          <img
+            src={`${base}IMG_7490_1.jpeg`}
+            alt="이승진"
+            className="w-full h-full object-cover object-center"
+          />
+          {/* Right-edge fade to blend with text side */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-black/40" />
+        </motion.div>
 
-        {/* Dark gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/50 to-black/20 z-10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
+        {/* Right: Text */}
+        <motion.div
+          className="flex items-center justify-center py-24 lg:py-0"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.35 }}
+        >
+          <div className="w-full max-w-[480px] px-10 xl:px-0">
+            <p className="text-[11px] tracking-[0.45em] uppercase text-white/35 mb-10">
+              Service Planner / PO
+            </p>
 
-        {/* Content */}
-        <div className="relative z-20 max-w-7xl mx-auto px-6 lg:px-12 h-full flex items-center">
-          <div className="grid lg:grid-cols-2 gap-16 items-center w-full">
-            {/* Left: text */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-block px-4 py-2 bg-white/10 backdrop-blur-sm text-white/90 rounded-full text-sm font-medium mb-8 border border-white/20">
-                AI와 함께 만드는 기획
-              </div>
-              <h1 className="text-6xl font-bold text-white mb-6 drop-shadow-lg">
-                {portfolioData.personal.name}
-              </h1>
-              <div className="flex flex-wrap gap-2 mb-10">
-                {portfolioData.personal.title.split(" / ").map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-4 py-1.5 rounded-full text-sm font-semibold bg-white/15 backdrop-blur-sm text-white border border-white/25"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <p className="text-lg text-white/80 mb-12 leading-relaxed max-w-lg">
-                {portfolioData.personal.introduction}
-              </p>
-              <div className="flex gap-4">
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center px-8 py-4 bg-white text-gray-900 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg shadow-lg"
-                >
-                  프로젝트 보기
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center px-8 py-4 border border-white/40 text-white rounded-lg hover:bg-white/10 backdrop-blur-sm transition-colors font-semibold text-lg"
-                >
-                  연락하기
-                </Link>
-              </div>
-            </motion.div>
+            <h1 className="text-[clamp(3.4rem,4.6vw,6rem)] font-black leading-[1.05] tracking-tight text-white mb-10">
+              사용자와<br />비즈니스를<br />잇는 기획자,<br />이승진
+            </h1>
 
-            {/* Right: profile photo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="hidden lg:flex justify-end"
-            >
-              <div className="relative">
-                <div className="absolute -inset-4 rounded-full bg-white/5 backdrop-blur-sm border border-white/15" />
-                <div className="relative w-72 h-72 rounded-full overflow-hidden border-2 border-white/30 shadow-2xl">
-                  <img
-                    src={portfolioData.personal.profileImage}
-                    alt={portfolioData.personal.name}
-                    className="w-full h-full object-cover"
-                  />
+            <p className="text-base text-white/45 mb-12 leading-relaxed">
+              {portfolioData.personal.introduction}
+            </p>
+
+            <div className="flex gap-3 mb-16">
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm font-semibold hover:bg-white/90 transition-colors"
+              >
+                프로젝트 보기 <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-sm font-medium hover:bg-white/5 transition-colors"
+              >
+                연락하기
+              </Link>
+            </div>
+
+            {/* Stats */}
+            <div className="flex gap-10 pt-8 border-t border-white/10">
+              {[
+                { n: "13+", label: "Years" },
+                { n: "10+", label: "Projects" },
+                { n: "4", label: "Companies" },
+              ].map((s) => (
+                <div key={s.label}>
+                  <div className="text-2xl font-black text-white leading-none">{s.n}</div>
+                  <div className="text-[10px] tracking-[0.3em] uppercase text-white/30 mt-1">{s.label}</div>
                 </div>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-5 py-2 bg-white/15 backdrop-blur-md rounded-full border border-white/25 whitespace-nowrap">
-                  <span className="text-sm font-semibold text-white">{portfolioData.personal.name}</span>
-                </div>
-              </div>
-            </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/4 -translate-x-1/2 hidden lg:flex flex-col items-center gap-2 text-white/20">
+          <span className="text-[9px] tracking-[0.4em] uppercase">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-white/20 to-transparent animate-pulse" />
+        </div>
+      </section>
+
+      {/* ── Marquee Banners (교차 띠) ── */}
+      <div className="relative bg-[#0a0a0a]" style={{ height: "220px" }}>
+        {/* Strip 1: 흰색, 왼쪽 스크롤 */}
+        <div style={{
+          position: "absolute",
+          left: "-50vw",
+          width: "200vw",
+          top: "36px",
+          transform: "rotate(-4deg)",
+          overflow: "hidden",
+          background: "white",
+        }}>
+          <div style={{
+            display: "flex",
+            width: "max-content",
+            animation: "marquee 28s linear infinite",
+            alignItems: "center",
+            padding: "14px 0",
+          }}>
+            {[...marqueeKeywords, ...marqueeKeywords].map((kw, i) => (
+              <span key={i} style={{
+                fontFamily: '"Bebas Neue", sans-serif',
+                fontSize: "1.7rem", letterSpacing: "0.06em",
+                whiteSpace: "nowrap", padding: "0 28px", color: "#000",
+                flexShrink: 0,
+              }}>
+                {kw}<span style={{ color: "rgba(0,0,0,0.25)", margin: "0 10px" }}>·</span>
+              </span>
+            ))}
           </div>
         </div>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/50 z-20"
-        >
-          <span className="text-xs tracking-widest uppercase">Scroll</span>
-          <div className="w-px h-8 bg-gradient-to-b from-white/50 to-transparent animate-pulse" />
-        </motion.div>
+        {/* Strip 2: 파란색, 오른쪽 스크롤 */}
+        <div style={{
+          position: "absolute",
+          left: "-50vw",
+          width: "200vw",
+          top: "124px",
+          transform: "rotate(4deg)",
+          overflow: "hidden",
+          background: "#2563eb",
+        }}>
+          <div style={{
+            display: "flex",
+            width: "max-content",
+            animation: "marquee-reverse 28s linear infinite",
+            alignItems: "center",
+            padding: "14px 0",
+          }}>
+            {[...marqueeKeywords2, ...marqueeKeywords2].map((kw, i) => (
+              <span key={i} style={{
+                fontFamily: '"Bebas Neue", sans-serif',
+                fontSize: "1.7rem", letterSpacing: "0.06em",
+                whiteSpace: "nowrap", padding: "0 28px", color: "#fff",
+                flexShrink: 0,
+              }}>
+                {kw}<span style={{ color: "rgba(255,255,255,0.3)", margin: "0 10px" }}>·</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Highlights Section */}
-      <section className="py-24 bg-gray-50">
+      {/* ── Numbers / About ── */}
+      <section className="py-32 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              주요 강점
-            </h2>
-            <p className="text-xl text-gray-600">
-              데이터와 사용자 경험을 중심으로 가치를 만듭니다
-            </p>
-          </motion.div>
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+            >
+              <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-6">About</p>
+              <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-8">
+                13년간 쌓아온<br />기획의 깊이
+              </h2>
+              <p className="text-white/50 leading-relaxed max-w-sm">
+                롯데, 삼성, 교보, 코웨이를 거치며 대형 커머스부터 글로벌 이커머스까지 다양한 도메인의 서비스를 기획해왔습니다.
+              </p>
+              <Link
+                to="/about"
+                className="inline-flex items-center gap-2 mt-10 text-sm text-white/50 hover:text-white transition-colors group"
+              >
+                더 알아보기
+                <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </Link>
+            </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 gap-px bg-white/10">
+              {[
+                { number: "13년+", label: "서비스 기획 경력" },
+                { number: "4개사", label: "대기업 경험" },
+                { number: "10+", label: "주요 프로젝트" },
+                { number: "글로벌", label: "미국 · 싱가포르" },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className="bg-[#0a0a0a] p-8"
+                >
+                  <div className="text-4xl font-black text-white mb-2">{stat.number}</div>
+                  <div className="text-sm text-white/40">{stat.label}</div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Projects ── */}
+      <section className="py-24 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex items-end justify-between mb-16">
+            <div>
+              <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-4">Work</p>
+              <h2 className="text-5xl font-black">주요 프로젝트</h2>
+            </div>
+            <Link
+              to="/projects"
+              className="hidden md:inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors group"
+            >
+              전체 보기
+              <ArrowUpRight className="h-4 w-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </Link>
+          </div>
+
+          <div>
+            {portfolioData.projects.slice(0, 5).map((project, i) => (
+              <motion.div
+                key={project.id}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                viewport={{ once: true }}
+              >
+                <Link
+                  to={`/projects/${project.id}`}
+                  className="flex items-center gap-6 py-7 border-t border-white/10 hover:bg-white/[0.03] transition-colors group px-2 -mx-2"
+                >
+                  <span className="text-xs text-white/20 font-mono w-8 flex-shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-xl font-bold text-white group-hover:text-white/80 transition-colors truncate">
+                      {project.title}
+                    </h3>
+                    <p className="text-sm text-white/30 mt-1">
+                      {project.company} · {project.period}
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 hidden lg:flex">
+                    {project.skills.slice(0, 2).map((skill) => (
+                      <span key={skill} className="text-xs px-3 py-1 border border-white/15 text-white/40 rounded-full">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                  <ArrowUpRight className="h-5 w-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
+                </Link>
+              </motion.div>
+            ))}
+            <div className="border-t border-white/10" />
+          </div>
+
+          <div className="mt-8 md:hidden">
+            <Link
+              to="/projects"
+              className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white transition-colors"
+            >
+              전체 보기 <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Expertise ── */}
+      <section className="py-24 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-16">Expertise</p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
             {[
               {
-                icon: Lightbulb,
-                title: "전략적 사고",
-                description: "비즈니스 목표와 사용자 니즈를 연결하는 전략 수립",
-                color: "text-yellow-600",
-                bg: "bg-yellow-50"
+                title: "전략 기획",
+                skills: ["비즈니스 전략 수립", "서비스 로드맵", "이해관계자 관리", "데이터 기반 의사결정"],
               },
               {
-                icon: TrendingUp,
-                title: "데이터 기반",
-                description: "정량적 지표와 분석을 통한 의사결정",
-                color: "text-green-600",
-                bg: "bg-green-50"
+                title: "커머스 플랫폼",
+                skills: ["FO/BO 화면설계", "주문·결제·회원", "기간계 연동 설계", "Shopify 커스터마이징"],
               },
               {
-                icon: Briefcase,
-                title: "프로젝트 리드",
-                description: "크로스펑셔널 팀을 이끄는 리더십",
-                color: "text-blue-600",
-                bg: "bg-blue-50"
+                title: "글로벌 서비스",
+                skills: ["미국 시장 기획", "싱가포르 현지화", "글로벌 결제 연동", "해외 수행사 협업"],
               },
               {
-                icon: Code2,
-                title: "AI & 바이브 코딩",
-                description: "AI 대학원 과정 중이며 바이브 코딩 역량 보유",
-                color: "text-purple-600",
-                bg: "bg-purple-50"
-              }
-            ].map((item, index) => (
+                title: "AI & 기술",
+                skills: ["AI 대학원 과정", "바이브 코딩", "GTM 연동 설계", "API 기획"],
+              },
+            ].map((item, i) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-xl p-8 hover:shadow-lg transition-shadow"
+                className="bg-[#0a0a0a] p-8"
               >
-                <div className={`inline-flex items-center justify-center w-14 h-14 ${item.bg} rounded-lg mb-6`}>
-                  <item.icon className={`h-7 w-7 ${item.color}`} />
-                </div>
-                <h3 className="text-lg font-bold text-gray-900 mb-3">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {item.description}
-                </p>
+                <h3 className="text-base font-bold text-white mb-6">{item.title}</h3>
+                <ul className="space-y-2">
+                  {item.skills.map((skill) => (
+                    <li key={skill} className="text-sm text-white/40">{skill}</li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Featured Projects */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+      {/* ── CTA ── */}
+      <section className="py-40">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             viewport={{ once: true }}
-            className="mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              주요 프로젝트
+            <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-8">Contact</p>
+            <h2 className="text-[clamp(3rem,8vw,8rem)] font-black leading-none tracking-tight mb-12">
+              기획으로
+              <br />증명합니다.
             </h2>
-            <p className="text-xl text-gray-600">
-              다양한 도메인에서의 프로젝트 경험
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {portfolioData.projects.slice(0, 3).map((project, index) => {
-              const projectIcons = [
-                { Icon: ShoppingBag, gradient: "from-orange-400 to-red-500" },
-                { Icon: Smartphone, gradient: "from-blue-400 to-indigo-500" },
-                { Icon: MessageSquare, gradient: "from-green-400 to-emerald-500" }
-              ];
-              const { Icon, gradient } = projectIcons[index];
-
-              return (
-                <motion.div
-                  key={project.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link
-                    to={`/projects/${project.id}`}
-                    className="block bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-lg hover:border-gray-300 transition-all group"
-                  >
-                    {project.image ? (
-                      <div className="h-40 overflow-hidden">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                      </div>
-                    ) : (
-                      <div className={`bg-gradient-to-br ${gradient} h-40 flex items-center justify-center`}>
-                        <Icon className="h-20 w-20 text-white/90" strokeWidth={1.5} />
-                      </div>
-                    )}
-                    <div className="p-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <span className="text-sm font-semibold text-gray-900">{project.company}</span>
-                        <span className="text-sm text-gray-400">·</span>
-                        <span className="text-sm text-gray-500">{project.period}</span>
-                      </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-3">
-                        {project.title}
-                      </h3>
-                      <p className="text-gray-600 mb-4 line-clamp-2 text-sm">
-                        {project.overview}
-                      </p>
-                      <div className="flex items-center text-blue-600 font-medium text-sm group-hover:gap-2 transition-all">
-                        자세히 보기
-                        <ArrowRight className="ml-1 h-4 w-4" />
-                      </div>
-                    </div>
-                  </Link>
-                </motion.div>
-              );
-            })}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link
-              to="/projects"
-              className="inline-flex items-center px-8 py-4 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-medium"
+            <a
+              href={`mailto:${portfolioData.personal.email}`}
+              className="inline-flex items-center gap-3 text-xl text-white/50 hover:text-white transition-colors group"
             >
-              모든 프로젝트 보기
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="relative bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl overflow-hidden">
-              <div className="relative px-12 py-20">
-                <div className="max-w-4xl mx-auto">
-                  <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                      <h2 className="text-4xl font-bold text-white mb-6 leading-tight">
-                        함께 일하고<br />싶으신가요?
-                      </h2>
-                      <p className="text-xl text-blue-100 mb-8 leading-relaxed">
-                        새로운 기회와 협업을 언제나 환영합니다.
-                      </p>
-                      <Link
-                        to="/contact"
-                        className="inline-flex items-center px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-all font-semibold shadow-lg"
-                      >
-                        연락처 보기
-                        <ArrowRight className="ml-3 h-5 w-5" />
-                      </Link>
-                    </div>
-
-                    <div className="space-y-4">
-                      <a
-                        href={`mailto:${portfolioData.personal.email}`}
-                        className="group flex items-center p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all"
-                      >
-                        <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mr-4">
-                          <Mail className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-sm text-blue-100 font-medium mb-1">이메일</div>
-                          <div className="text-white font-semibold">{portfolioData.personal.email}</div>
-                        </div>
-                      </a>
-
-                      <a
-                        href={portfolioData.personal.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center p-5 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 hover:bg-white/20 transition-all"
-                      >
-                        <div className="w-12 h-12 bg-white/10 rounded-lg flex items-center justify-center mr-4">
-                          <Linkedin className="h-6 w-6 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <div className="text-sm text-blue-100 font-medium mb-1">LinkedIn</div>
-                          <div className="text-white font-semibold">프로필 보기</div>
-                        </div>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              {portfolioData.personal.email}
+              <ArrowUpRight className="h-5 w-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </a>
           </motion.div>
         </div>
       </section>

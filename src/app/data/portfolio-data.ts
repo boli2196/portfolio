@@ -22,7 +22,7 @@ export const portfolioData = {
       id: "exp-1",
       logo: `${base}coway.jpg`,
       company: "(주)코웨이",
-      position: "PM",
+      position: "PM / 서비스기획",
       period: "2023.09 - 재직중",
       description: "글로벌 쇼핑몰 및 프로모션 서비스 기획",
       achievements: [
@@ -53,7 +53,7 @@ export const portfolioData = {
       id: "exp-3",
       logo: "",
       company: "(주)아이피그룹",
-      position: "PM/서비스 기획",
+      position: "서비스 기획",
       period: "2014.12 - 2022.03",
       description: "대형 커머스 플랫폼 운영 및 차세대 구축 프로젝트",
       achievements: [
@@ -86,6 +86,7 @@ export const portfolioData = {
       id: "project-0",
       title: "코웨이 싱가포르 법인 쇼핑몰 리뉴얼",
       company: "(주)코웨이",
+      image: `${base}Project_sg.jpg`,
       period: "2026.02 - 진행중",
       role: "PM",
       overview: "코웨이 싱가포르 법인의 공식 온라인 쇼핑몰 전면 리뉴얼을 통해 현지 고객 경험 개선 및 온라인 판매 채널 경쟁력 강화",
@@ -114,6 +115,7 @@ export const portfolioData = {
       id: "project-1",
       title: "미국 정수기 렌탈 서비스 NECOA 출시",
       company: "(주)코웨이",
+      url: "www.necoa.com",
       period: "2023.09 - 2025.05",
       role: "서비스 기획 담당",
       overview: "미국 신사업 커머스 플랫폼 구축 및 런칭을 위한 Front/Back Office 전반의 서비스 기획 총괄",
@@ -226,7 +228,7 @@ export const portfolioData = {
       ],
       impact: "BO 금권·쿠폰 관리 체계를 정비하여 운영 효율을 높이고, FO 마이페이지·내서재 리뉴얼을 통해 고객의 서비스 이용 경험을 개선하였습니다.",
       skills: ["BO 기획", "FO 서비스 기획", "정보 설계", "쿠폰/금권 정책 설계", "마이페이지 UX", "내서재 기능 기획"],
-      image: `${base}Project_kyobo.png`
+      image: `${base}Project_kyobo.jpg`
     }
   ],
 
@@ -240,6 +242,7 @@ export const portfolioData = {
       "요구사항 정의서 작성",
     ],
     research: [
+      "글로벌 현장 리서치",
       "사용자 리서치 & 인터뷰",
       "페르소나 설계",
       "사용성 테스트",
