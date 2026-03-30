@@ -49,6 +49,70 @@ function CountUpHeroStat({ n, label }: { n: string; label: string }) {
   );
 }
 
+const HERO_TEXT = "사용자와\n비즈니스를\n잇는 기획자,\n이승진";
+
+function useTypewriter(text: string, speed = 65, startDelay = 600) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const init = setTimeout(() => {
+      const tick = setInterval(() => {
+        setCount((c) => {
+          if (c >= text.length) { clearInterval(tick); return c; }
+          return c + 1;
+        });
+      }, speed);
+      return () => clearInterval(tick);
+    }, startDelay);
+    return () => clearTimeout(init);
+  }, [text, speed, startDelay]);
+
+  return { count, done: count >= text.length };
+}
+
+function HeroTypewriter() {
+  const { count, done } = useTypewriter(HERO_TEXT, 65, 600);
+  const partial = HERO_TEXT.slice(0, count);
+  const lines = partial.split("\n");
+  const fullLines = HERO_TEXT.split("\n");
+
+  return (
+    <h1 className="text-[clamp(3.4rem,4.6vw,6rem)] font-black leading-[1.05] tracking-tight text-white mb-10">
+      {fullLines.map((_, lineIdx) => {
+        const typed = lines[lineIdx] ?? "";
+        const isCurrentLine = lineIdx === lines.length - 1;
+        const isPastLine = lineIdx < lines.length - 1;
+        return (
+          <span key={lineIdx} style={{ display: "block" }}>
+            {isPastLine ? fullLines[lineIdx] : typed}
+            {isCurrentLine && (
+              <span
+                style={{
+                  display: "inline-block",
+                  width: "4px",
+                  height: "0.82em",
+                  background: "linear-gradient(180deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%)",
+                  marginLeft: "6px",
+                  verticalAlign: "middle",
+                  borderRadius: "2px",
+                  animation: done ? "cursor-blink 1s step-end infinite" : undefined,
+                  opacity: done ? undefined : 1,
+                }}
+              />
+            )}
+          </span>
+        );
+      })}
+      <style>{`
+        @keyframes cursor-blink {
+          0%, 100% { opacity: 1; }
+          50% { opacity: 0; }
+        }
+      `}</style>
+    </h1>
+  );
+}
+
 const marqueeKeywords = [
   "Service Design", "Product Strategy", "UX Planning", "Data-Driven", "AI Integration",
   "Shopify", "Roadmapping", "FO / BO Design", "Project Lead", "Stakeholder Mgmt",
@@ -141,9 +205,8 @@ export function HomePage() {
               Service Planner / PO
             </p>
 
-            <h1 className="text-[clamp(3.4rem,4.6vw,6rem)] font-black leading-[1.05] tracking-tight text-white mb-10">
-              사용자와<br />비즈니스를<br />잇는 기획자,<br />이승진
-            </h1>
+            <HeroTypewriter />
+
 
             <p className="text-base text-white/45 mb-12 leading-relaxed">
               {portfolioData.personal.introduction}
