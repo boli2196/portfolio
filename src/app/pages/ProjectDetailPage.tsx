@@ -1,5 +1,6 @@
 import { useParams, Link } from "react-router";
 import { portfolioData } from "../data/portfolio-data";
+import { SignatureDiagram } from "../components/SignatureDiagram";
 import { motion } from "motion/react";
 import { useRef, useState, useEffect } from "react";
 import {
@@ -121,9 +122,19 @@ export function ProjectDetailPage() {
             </Link>
 
             <div>
-              <div className="inline-flex items-center gap-1.5 mb-5 text-sm font-medium text-blue-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>
-                {project.role}
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                {project.featured && (
+                  <span
+                    className="text-[10px] font-bold tracking-[0.25em] uppercase px-2.5 py-1 rounded-full text-black"
+                    style={{ background: "linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%)" }}
+                  >
+                    Signature Project
+                  </span>
+                )}
+                <div className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block"></span>
+                  {project.role}
+                </div>
               </div>
               <h1 className="text-5xl lg:text-6xl font-black text-white mb-6">
                 {project.title}
@@ -196,6 +207,8 @@ export function ProjectDetailPage() {
           </motion.div>
         </div>
       </section>
+
+      <SignatureDiagram projectId={project.id} />
 
       {/* Background */}
       <section className="py-16 border-b border-white/10 bg-white/[0.02]">

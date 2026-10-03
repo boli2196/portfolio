@@ -1,6 +1,6 @@
 import { portfolioData } from "../data/portfolio-data";
 import { motion } from "motion/react";
-import { CheckCircle2, Mail, Phone, Users, Bot, MessageCircle, GraduationCap, Award, BadgeCheck } from "lucide-react";
+import { CheckCircle2, Mail, Phone, Layers, Rocket, Bot, GraduationCap, Award, BadgeCheck } from "lucide-react";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 
 export function AboutPage() {
@@ -24,7 +24,7 @@ export function AboutPage() {
               Profile
             </h1>
             <p className="text-base text-white/40 leading-relaxed">
-              사용자와 비즈니스를 연결하는 기획자
+              글로벌 표준을 설계하고 런칭까지 이끄는 기획 / PM
             </p>
           </motion.div>
         </div>
@@ -83,9 +83,9 @@ export function AboutPage() {
                     <div className="text-white font-black text-lg leading-none">{portfolioData.personal.name}</div>
                     <div className="text-blue-300/70 text-[10px] tracking-[0.15em] mt-0.5 uppercase">Seungjin Lee</div>
                     <div className="flex items-center gap-2 mt-2">
-                      <span className="text-[9px] px-1.5 py-0.5 bg-blue-500/20 border border-blue-400/30 text-blue-300 rounded font-semibold tracking-wider uppercase">Service Planner</span>
+                      <span className="text-[9px] px-1.5 py-0.5 bg-blue-500/20 border border-blue-400/30 text-blue-300 rounded font-semibold tracking-wider uppercase">Planner / PM</span>
                       <span className="text-white/20 text-[9px]">|</span>
-                      <span className="text-white/40 text-[9px]">PO / PM</span>
+                      <span className="text-white/40 text-[9px]">Global Commerce</span>
                     </div>
                   </div>
 
@@ -126,10 +126,12 @@ export function AboutPage() {
                   <Mail className="h-4 w-4 mr-3 text-blue-400" />
                   <span>{portfolioData.personal.email}</span>
                 </div>
-                <div className="flex items-center text-white/50">
-                  <Phone className="h-4 w-4 mr-3 text-violet-400" />
-                  <span>{portfolioData.personal.phone}</span>
-                </div>
+                {portfolioData.personal.phone && (
+                  <div className="flex items-center text-white/50">
+                    <Phone className="h-4 w-4 mr-3 text-violet-400" />
+                    <span>{portfolioData.personal.phone}</span>
+                  </div>
+                )}
               </div>
             </motion.div>
           </div>
@@ -151,28 +153,28 @@ export function AboutPage() {
               기획 철학
             </h2>
             <p className="text-white/50 leading-relaxed">
-              제가 중요하게 생각하는 가치들입니다
+              일할 때 지키는 세 가지 원칙입니다
             </p>
           </motion.div>
 
           <div className="grid gap-px bg-white/10 md:grid-cols-3">
             {[
               {
-                title: "사용자 중심",
-                description: "사용자의 불편함과 니즈를 깊이 이해하고, 그들의 입장에서 생각합니다. 데이터와 리서치를 통해 가설을 검증하며, 사용자에게 진정한 가치를 제공하는 서비스를 만듭니다.",
-                icon: Users,
+                title: "표준으로 확장한다",
+                description: "한 나라를 위해 만든 것이 다음 나라에서도 쓰이도록 설계합니다. 공통과 현지화의 경계를 먼저 정하고, 한 번 세운 기준을 모든 법인에 재사용합니다.",
+                icon: Layers,
                 color: "text-violet-400",
               },
               {
-                title: "AI 활용 기획",
-                description: "Claude, GPT 등 AI 툴을 기획 프로세스에 적극 활용합니다. 바이브 코딩으로 프로토타입을 직접 구현하고, AI 기반 인사이트 도출로 의사결정의 속도와 정확성을 높입니다.",
-                icon: Bot,
+                title: "런칭까지 끌고 간다",
+                description: "문서를 넘기고 끝내지 않습니다. RFP와 벤더 선정, 현지 요구사항 워크숍, 범위 조정까지 직접 리딩해 실제 오픈으로 연결합니다.",
+                icon: Rocket,
                 color: "text-sky-400",
               },
               {
-                title: "협업과 소통",
-                description: "디자이너, 개발자, 마케터 등 다양한 직군과 효과적으로 협업합니다. 명확한 커뮤니케이션으로 팀의 시너지를 극대화합니다.",
-                icon: MessageCircle,
+                title: "AI로 일한다",
+                description: "Claude Code, Figma MCP, Gemini API로 산출물 작성과 반복 업무를 자동화합니다. 이 포트폴리오 사이트도 직접 바이브 코딩으로 만들었습니다.",
+                icon: Bot,
                 color: "text-teal-400",
               }
             ].map((philosophy, index) => (

@@ -23,7 +23,7 @@ export function ExperiencePage() {
               Career
             </h1>
             <p className="text-base text-white/40 leading-relaxed">
-              다양한 경험을 통해 성장해왔습니다
+              대형 커머스 운영에서 글로벌 표준 구축까지, 13년
             </p>
           </motion.div>
         </div>
@@ -138,18 +138,18 @@ export function ExperiencePage() {
             {[
               {
                 number: "13년+",
-                label: "서비스 기획 경력",
+                label: "기획 · PM 경력",
                 description: "2012년부터 현재까지"
               },
               {
                 number: "4개사",
                 label: "회사 경험",
-                description: "롯데 · 삼성 · 교보 · 코웨이"
+                description: "코웨이 · 커넥트웨이브 · 아이피그룹 · 롯데닷컴"
               },
               {
                 number: "10+",
                 label: "주요 프로젝트",
-                description: "대형 커머스 · 면세 · 글로벌"
+                description: "삼성 · 롯데면세점 · 교보 · 글로벌 이커머스"
               }
             ].map((stat, index) => (
               <motion.div

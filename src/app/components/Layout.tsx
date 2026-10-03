@@ -3,6 +3,7 @@ import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { ScrollToTop } from "./ScrollToTop";
 import { CursorFollower } from "./CursorFollower";
+import { IntroOverlay } from "./IntroOverlay";
 
 export function Layout() {
   const location = useLocation();
@@ -46,6 +47,7 @@ export function Layout() {
   return (
     <div className="min-h-screen bg-[#0a0a0a] cursor-none">
       <CursorFollower />
+      <IntroOverlay />
       {/* Header */}
       <header className={`fixed top-0 z-50 w-full transition-all duration-400 ${isHome ? headerBg : "sticky bg-[#0a0a0a] border-b border-white/10"}`}
         style={!isHome ? { position: "sticky" } : {}}>
@@ -126,7 +128,7 @@ export function Layout() {
               © 2026 이승진. All rights reserved.
             </p>
             <p className="text-white/40 text-sm mb-2">
-              서비스 기획자 포트폴리오
+              기획 / PM 포트폴리오
             </p>
           </div>
         </div>

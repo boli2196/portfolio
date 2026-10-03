@@ -12,11 +12,13 @@ import {
   Database,
   Layers,
   Activity,
-  PieChart
+  PieChart,
+  Cloud
 } from "lucide-react";
 import {
   SiFigma, SiSketch, SiJira, SiConfluence, SiNotion,
-  SiGoogleanalytics, SiMixpanel, SiPython
+  SiGoogleanalytics, SiMixpanel, SiPython,
+  SiClaude, SiMermaid, SiGooglegemini
 } from "react-icons/si";
 
 const ToolIcon = ({ iconName }: { iconName: string }) => {
@@ -32,6 +34,10 @@ const ToolIcon = ({ iconName }: { iconName: string }) => {
     case "SiMixpanel": return <SiMixpanel className="h-6 w-6 text-purple-400" />;
     case "SiTableau": return <PieChart className="h-6 w-6 text-emerald-400" />;
     case "SiPython": return <SiPython className="h-6 w-6 text-yellow-400" />;
+    case "SiClaude": return <SiClaude className="h-6 w-6 text-[#D97757]" />;
+    case "SiMermaid": return <SiMermaid className="h-6 w-6 text-pink-400" />;
+    case "SiGooglegemini": return <SiGooglegemini className="h-6 w-6 text-blue-400" />;
+    case "Cloud": return <Cloud className="h-6 w-6 text-amber-400" />;
     case "Database": return <Database className="h-6 w-6 text-sky-400" />;
     default: return <Wrench className="h-6 w-6 text-orange-400" />;
   }
@@ -40,25 +46,25 @@ const ToolIcon = ({ iconName }: { iconName: string }) => {
 export function SkillsPage() {
   const textCategories = [
     {
-      title: "서비스 기획",
+      title: "PM · 딜리버리",
+      icon: Target,
+      iconColor: "text-rose-400",
+      skills: portfolioData.skills.delivery
+    },
+    {
+      title: "기획 · 설계",
       icon: Lightbulb,
       iconColor: "text-amber-400",
       skills: portfolioData.skills.planning
     },
     {
-      title: "리서치 & 분석",
+      title: "리서치 · 분석",
       icon: Search,
       iconColor: "text-sky-400",
       skills: portfolioData.skills.research
     },
     {
-      title: "데이터 분석",
-      icon: BarChart3,
-      iconColor: "text-emerald-400",
-      skills: portfolioData.skills.data
-    },
-    {
-      title: "협업 & 관리",
+      title: "협업 · 커뮤니케이션",
       icon: Users,
       iconColor: "text-violet-400",
       skills: portfolioData.skills.collaboration
@@ -85,7 +91,7 @@ export function SkillsPage() {
               Skills
             </h1>
             <p className="text-base text-white/40 leading-relaxed">
-              다양한 도구와 방법론을 활용한 전문성
+              표준을 설계하고 런칭까지 끌고 가는 역량
             </p>
           </motion.div>
         </div>
@@ -183,13 +189,13 @@ export function SkillsPage() {
             {[
               {
                 title: "학습 중",
-                items: ["AI/ML 기반 서비스 기획", "프로덕트 매니지먼트", "그로스 해킹 심화"],
+                items: ["AI/ML 기반 서비스 기획", "이탈 예측 · 데이터 누출 연구", "AI 에이전트 업무 자동화"],
                 icon: BookOpen,
                 iconColor: "text-sky-400",
               },
               {
                 title: "관심 분야",
-                items: ["플랫폼 비즈니스", "구독 경제", "개인화 추천 시스템"],
+                items: ["글로벌 커머스 아키텍처", "구독 경제", "GEO (생성형 엔진 최적화)"],
                 icon: Compass,
                 iconColor: "text-violet-400",
               },

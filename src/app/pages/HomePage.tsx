@@ -4,6 +4,8 @@ import { portfolioData } from "../data/portfolio-data";
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { useCountUp } from "../hooks/useCountUp";
+import { useIntroDone } from "../components/IntroOverlay";
+import { ScaleShowcase } from "../components/ScaleShowcase";
 
 // "13+" → { num: 13, suffix: "+" }, "13년+" → { num: 13, suffix: "년+" }, "4개사" → { num: 4, suffix: "개사" }
 function parseStatValue(value: string): { num: number; suffix: string } | null {
@@ -49,12 +51,14 @@ function CountUpHeroStat({ n, label }: { n: string; label: string }) {
   );
 }
 
-const HERO_TEXT = "사용자와\n비즈니스를\n잇는 기획자,\n이승진";
+const HERO_TEXT = "설계부터\n런칭까지,\n기획/PM\n이승진";
 
 function useTypewriter(text: string, speed = 65, startDelay = 600) {
   const [count, setCount] = useState(0);
+  const introDone = useIntroDone();
 
   useEffect(() => {
+    if (!introDone) return;
     const init = setTimeout(() => {
       const tick = setInterval(() => {
         setCount((c) => {
@@ -65,7 +69,7 @@ function useTypewriter(text: string, speed = 65, startDelay = 600) {
       return () => clearInterval(tick);
     }, startDelay);
     return () => clearTimeout(init);
-  }, [text, speed, startDelay]);
+  }, [text, speed, startDelay, introDone]);
 
   return { count, done: count >= text.length };
 }
@@ -77,7 +81,7 @@ function HeroTypewriter() {
   const fullLines = HERO_TEXT.split("\n");
 
   return (
-    <h1 className="text-[clamp(3.4rem,4.6vw,6rem)] font-black leading-[1.05] tracking-tight text-white mb-10">
+    <h1 className="text-[clamp(3.4rem,4.6vw,6rem)] font-black leading-[1.05] tracking-tight text-white mb-10" style={{ wordBreak: "keep-all" }}>
       {fullLines.map((_, lineIdx) => {
         const typed = lines[lineIdx] ?? "";
         const isCurrentLine = lineIdx === lines.length - 1;
@@ -112,18 +116,6 @@ function HeroTypewriter() {
     </h1>
   );
 }
-
-const marqueeKeywords = [
-  "Service Design", "Product Strategy", "UX Planning", "Data-Driven", "AI Integration",
-  "Shopify", "Roadmapping", "FO / BO Design", "Project Lead", "Stakeholder Mgmt",
-  "User Research", "Ecommerce", "API Planning", "Vibe Coding",
-];
-
-const marqueeKeywords2 = [
-  "Global Ecommerce", "Rental Platform", "B2B System", "Loyalty Program", "Payment Flow",
-  "Membership Design", "Next-Gen Platform", "US Market", "Singapore", "Cart & Order",
-  "Backend Planning", "MVP Scoping", "Go-to-Market",
-];
 
 export function HomePage() {
   const base = import.meta.env.BASE_URL;
@@ -202,7 +194,7 @@ export function HomePage() {
         >
           <div className="w-full max-w-[480px] px-10 xl:px-0">
             <p className="text-[11px] tracking-[0.45em] uppercase text-white/35 mb-10">
-              Service Planner / PO
+              Global Commerce · Product Manager
             </p>
 
             <HeroTypewriter />
@@ -247,68 +239,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── Marquee Banners (교차 띠) ── */}
-      <div className="relative bg-[#0a0a0a]" style={{ height: "220px" }}>
-        {/* Strip 1: 흰색, 왼쪽 스크롤 */}
-        <div style={{
-          position: "absolute",
-          left: "-50vw",
-          width: "200vw",
-          top: "36px",
-          transform: "rotate(-4deg)",
-          overflow: "hidden",
-          background: "white",
-        }}>
-          <div style={{
-            display: "flex",
-            width: "max-content",
-            animation: "marquee 28s linear infinite",
-            alignItems: "center",
-            padding: "14px 0",
-          }}>
-            {[...marqueeKeywords, ...marqueeKeywords].map((kw, i) => (
-              <span key={i} style={{
-                fontFamily: '"Bebas Neue", sans-serif',
-                fontSize: "1.7rem", letterSpacing: "0.06em",
-                whiteSpace: "nowrap", padding: "0 28px", color: "#000",
-                flexShrink: 0,
-              }}>
-                {kw}<span style={{ color: "rgba(0,0,0,0.25)", margin: "0 10px" }}>·</span>
-              </span>
-            ))}
-          </div>
-        </div>
-
-        {/* Strip 2: 파란색, 오른쪽 스크롤 */}
-        <div style={{
-          position: "absolute",
-          left: "-50vw",
-          width: "200vw",
-          top: "124px",
-          transform: "rotate(4deg)",
-          overflow: "hidden",
-          background: "#2563eb",
-        }}>
-          <div style={{
-            display: "flex",
-            width: "max-content",
-            animation: "marquee-reverse 28s linear infinite",
-            alignItems: "center",
-            padding: "14px 0",
-          }}>
-            {[...marqueeKeywords2, ...marqueeKeywords2].map((kw, i) => (
-              <span key={i} style={{
-                fontFamily: '"Bebas Neue", sans-serif',
-                fontSize: "1.7rem", letterSpacing: "0.06em",
-                whiteSpace: "nowrap", padding: "0 28px", color: "#fff",
-                flexShrink: 0,
-              }}>
-                {kw}<span style={{ color: "rgba(255,255,255,0.3)", margin: "0 10px" }}>·</span>
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── 표준 → 국가별 확장 (스크롤 장면) ── */}
+      <ScaleShowcase />
 
       {/* ── Numbers / About ── */}
       <section className="py-32 border-b border-white/10">
@@ -322,10 +254,10 @@ export function HomePage() {
             >
               <p className="text-xs tracking-[0.4em] uppercase text-white/30 mb-6">About</p>
               <h2 className="text-5xl lg:text-6xl font-black leading-tight mb-8">
-                13년간 쌓아온<br />기획의 깊이
+                13년간 쌓아온<br />기획과 리딩
               </h2>
               <p className="text-white/50 leading-relaxed max-w-sm">
-                롯데, 삼성, 교보, 코웨이를 거치며 대형 커머스부터 글로벌 이커머스까지 다양한 도메인의 서비스를 기획해왔습니다.
+                롯데닷컴, 아이피그룹, 커넥트웨이브, 코웨이를 거치며 삼성전자·롯데면세점·교보문고 같은 대형 커머스부터 글로벌 이커머스까지 기획하고 이끌어왔습니다. 지금은 어느 나라에든 확장할 수 있는 글로벌 쇼핑몰 표준을 만들어 코웨이의 모든 해외 법인으로 확산하고 있습니다.
               </p>
               <Link
                 to="/about"
@@ -339,9 +271,9 @@ export function HomePage() {
             <div className="grid grid-cols-2 gap-px bg-white/10">
               {[
                 { number: "13년+", label: "서비스 기획 경력" },
-                { number: "4개사", label: "대기업 경험" },
+                { number: "4개사", label: "근무 · 대형 커머스 프로젝트 다수" },
                 { number: "10+", label: "주요 프로젝트" },
-                { number: "글로벌", label: "미국 · 싱가포르" },
+                { number: "1 → ∞", label: "하나의 표준, 모든 해외 법인으로" },
               ].map((stat, i) => (
                 <motion.div
                   key={i}
@@ -395,9 +327,19 @@ export function HomePage() {
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xl font-bold text-white group-hover:text-white/80 transition-colors truncate">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-center gap-3 min-w-0">
+                      <h3 className="text-xl font-bold text-white group-hover:text-white/80 transition-colors truncate">
+                        {project.title}
+                      </h3>
+                      {project.featured && (
+                        <span
+                          className="flex-shrink-0 text-[9px] font-bold tracking-[0.25em] uppercase px-2 py-0.5 rounded-full text-black"
+                          style={{ background: "linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%)" }}
+                        >
+                          Signature
+                        </span>
+                      )}
+                    </div>
                     <p className="text-sm text-white/30 mt-1">
                       {project.company} · {project.period}
                     </p>
@@ -439,15 +381,15 @@ export function HomePage() {
               },
               {
                 title: "커머스 플랫폼",
-                skills: ["FO/BO 화면설계", "주문·결제·회원", "기간계 연동 설계", "Shopify 커스터마이징"],
+                skills: ["FO/BO 화면설계", "주문·결제·회원", "통합회원 · ERP 연동", "Shopify 커스터마이징"],
               },
               {
                 title: "글로벌 서비스",
-                skills: ["미국 시장 기획", "싱가포르 현지화", "글로벌 결제 연동", "해외 수행사 협업"],
+                skills: ["글로벌 표준 모델 설계", "4단계 현지화 분류 체계", "RFP 작성 · 영문화", "해외 벤더 · 법인 협업"],
               },
               {
                 title: "AI & 기술",
-                skills: ["AI 대학원 과정", "바이브 코딩", "GTM 연동 설계", "API 기획"],
+                skills: ["AI 대학원 (논문 트랙)", "Claude Code · Figma MCP", "Gemini API 자동화", "GEO · llms.txt"],
               },
             ].map((item, i) => (
               <motion.div

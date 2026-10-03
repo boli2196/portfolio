@@ -60,7 +60,7 @@ export function ContactPage() {
                   </span>
                 </div>
                 <p className="text-white/40 leading-relaxed text-base">
-                  서비스 기획, 프로덕트 매니지먼트, 컨설팅 등<br />
+                  글로벌 커머스 기획 · PM, 해외 법인 구축 프로젝트 등<br />
                   다양한 형태의 협업에 열려있습니다.<br />
                   언제든지 편하게 연락 주세요.
                 </p>
@@ -96,20 +96,22 @@ export function ContactPage() {
                 </div>
               </a>
 
-              <a
-                href={`tel:${portfolioData.personal.phone}`}
-                className="flex items-center p-10 hover:bg-white/5 transition-colors group flex-1"
-              >
-                <div className="w-12 h-12 border border-white/15 flex items-center justify-center mr-6 group-hover:border-white/30 transition-colors flex-shrink-0">
-                  <Phone className="h-5 w-5 text-emerald-400" />
-                </div>
-                <div>
-                  <div className="text-xs text-white/30 font-medium mb-2 tracking-widest uppercase">Phone</div>
-                  <div className="text-white/80 font-medium">
-                    {portfolioData.personal.phone}
+              {portfolioData.personal.phone && (
+                <a
+                  href={`tel:${portfolioData.personal.phone}`}
+                  className="flex items-center p-10 hover:bg-white/5 transition-colors group flex-1"
+                >
+                  <div className="w-12 h-12 border border-white/15 flex items-center justify-center mr-6 group-hover:border-white/30 transition-colors flex-shrink-0">
+                    <Phone className="h-5 w-5 text-emerald-400" />
                   </div>
-                </div>
-              </a>
+                  <div>
+                    <div className="text-xs text-white/30 font-medium mb-2 tracking-widest uppercase">Phone</div>
+                    <div className="text-white/80 font-medium">
+                      {portfolioData.personal.phone}
+                    </div>
+                  </div>
+                </a>
+              )}
 
               <a
                 href={portfolioData.personal.linkedin}
@@ -147,26 +149,26 @@ export function ContactPage() {
               함께 일하면 좋은 이유
             </h2>
             <p className="text-white/50 leading-relaxed">
-              다양한 프로젝트 경험을 통해 검증된 역량
+              해외 법인 프로젝트를 이끌며 증명한 세 가지
             </p>
           </motion.div>
 
           <div className="grid gap-px bg-white/10 md:grid-cols-3">
             {[
               {
-                title: "문제 해결 능력",
-                description: "복잡한 문제를 구조화하고, 데이터와 리서치를 통해 최적의 솔루션을 도출합니다.",
-                icon: "💡"
+                title: "어디든 확장되는 설계",
+                description: "국가마다 처음부터 다시 만들지 않도록, 공통과 현지화를 나눈 글로벌 표준으로 설계합니다.",
+                icon: "🌏"
               },
               {
-                title: "크로스펑셔널 협업",
-                description: "디자이너, 개발자, 마케터 등 다양한 직군과 효과적으로 협업하며 시너지를 만듭니다.",
-                icon: "🤝"
+                title: "런칭까지 리딩",
+                description: "RFP, 벤더 선정, 현지 워크숍, 범위 조정까지 직접 이끌어 실제 오픈으로 연결합니다.",
+                icon: "🚀"
               },
               {
-                title: "비즈니스 임팩트",
-                description: "단순한 기능 기획을 넘어, 측정 가능한 비즈니스 성과를 만들어냅니다.",
-                icon: "📈"
+                title: "해외 벤더 · 법인과 직접 소통",
+                description: "영문 RFP와 요구사항 문서를 만들고, 해외 벤더 · 현지 법인과 영어로 직접 협의합니다.",
+                icon: "🌐"
               }
             ].map((reason, index) => (
               <motion.div
@@ -202,7 +204,7 @@ export function ContactPage() {
             <div className="border border-white/10 p-16 text-center">
               <p className="text-[10px] tracking-[0.4em] uppercase text-white/30 mb-4">GET IN TOUCH</p>
               <h2 className="text-5xl lg:text-6xl font-black text-white mb-6">
-                기획자를 찾고 있다면
+                기획 / PM을 찾고 있다면
               </h2>
               <p className="text-white/50 leading-relaxed mb-10 max-w-2xl mx-auto">
                 프로젝트나 포지션에 대해 궁금한 점이 있다면<br />
@@ -218,11 +220,13 @@ export function ContactPage() {
                   이메일 보내기
                 </a>
                 <a
-                  href={`tel:${portfolioData.personal.phone}`}
+                  href={portfolioData.personal.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-8 py-4 border border-white/25 text-white font-semibold text-base hover:border-white/50 transition-colors"
                 >
-                  <Phone className="h-5 w-5 mr-2" />
-                  전화하기
+                  <Linkedin className="h-5 w-5 mr-2" />
+                  LinkedIn
                 </a>
               </div>
             </div>
