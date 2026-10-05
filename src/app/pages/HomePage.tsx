@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect, useRef } from "react";
 import { useCountUp } from "../hooks/useCountUp";
 import { useIntroDone } from "../components/IntroOverlay";
-import { ScaleShowcase } from "../components/ScaleShowcase";
+import { CareerArc } from "../components/CareerArc";
 
 // "13+" → { num: 13, suffix: "+" }, "13년+" → { num: 13, suffix: "년+" }, "4개사" → { num: 4, suffix: "개사" }
 function parseStatValue(value: string): { num: number; suffix: string } | null {
@@ -239,8 +239,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── 표준 → 국가별 확장 (스크롤 장면) ── */}
-      <ScaleShowcase />
+      {/* ── 13년 커리어: 넓어지는 범위 (스크롤 장면) ── */}
+      <CareerArc />
 
       {/* ── Numbers / About ── */}
       <section className="py-32 border-b border-white/10">
