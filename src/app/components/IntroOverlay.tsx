@@ -7,7 +7,7 @@ import { PlannerIntro } from "./intro/PlannerIntro";
 //  "planner" : Plan → Launch. — 기획자의 일하는 방식 중심
 // 주소 뒤에 ?intro=standard 또는 ?intro=planner 를 붙이면 바꿔서 미리 볼 수 있다
 type Variant = "standard" | "planner";
-const INTRO_VARIANT: Variant = "standard";
+const INTRO_VARIANT: Variant = "planner";
 
 function pickVariant(): Variant {
   try {
